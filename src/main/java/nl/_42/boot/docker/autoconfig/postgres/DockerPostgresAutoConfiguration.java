@@ -1,7 +1,7 @@
 package nl._42.boot.docker.autoconfig.postgres;
 
 import liquibase.integration.spring.SpringLiquibase;
-import nl._42.boot.docker.postgres.DockerPostgresProcessRunner;
+import nl._42.boot.docker.postgres.DockerPostgresContainer;
 import nl._42.boot.docker.postgres.DockerPostgresProperties;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.AllNestedConditions;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
 @ConditionalOnProperty(prefix = "docker.postgres", name = "enabled", havingValue = "true", matchIfMissing = true)
-@ConditionalOnClass(value = DockerPostgresProcessRunner.class)
+@ConditionalOnClass(value = DockerPostgresContainer.class)
 @AutoConfigureAfter({LiquibaseAutoConfiguration.class })
 @EnableConfigurationProperties(DockerPostgresProperties.class)
 public class DockerPostgresAutoConfiguration {
