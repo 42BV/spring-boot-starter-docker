@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-nl._42.boot.docker.SpringScriptHooksAutoConfiguration
+nl._42.boot.docker.autoconfig.postgres.DockerPostgresAutoConfiguration

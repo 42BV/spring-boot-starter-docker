@@ -1,4 +1,4 @@
-package nl._42.boot.docker;
+package nl._42.boot.docker.autoconfig.postgres;
 
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.BeansException;
@@ -9,11 +9,11 @@ import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 
-public class SpringScriptHooksDependencyPostProcessor implements BeanFactoryPostProcessor {
+public class DockerPostgresDependencyPostProcessor implements BeanFactoryPostProcessor {
 
     private final String dependOnBean;
 
-    public SpringScriptHooksDependencyPostProcessor(final String dependOnBean) {
+    public DockerPostgresDependencyPostProcessor(final String dependOnBean) {
         this.dependOnBean = dependOnBean;
     }
 
