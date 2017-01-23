@@ -1,0 +1,54 @@
+{
+  "properties": [
+    {
+      "name": "docker.postgres.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Determines whether the Postgres Docker image is enabled. Default is false."
+    },
+    {
+      "name": "docker.postgres.stdOutFilename",
+      "type": "java.lang.String",
+      "description": "The file for the OS process to write its std output to. Default is 'docker-std-out.log'."
+    },
+    {
+      "name": "docker.postgres.stdErrFilename",
+      "type": "java.lang.String",
+      "description": "The file for the OS process to write its std output to. Default is 'docker-std-err.log'."
+    },
+    {
+      "name": "docker.postgres.password",
+      "type": "java.lang.String",
+      "description": "Postgres password to use. Default is 'postgres'."
+    },
+    {
+      "name": "docker.postgres.port",
+      "type": "java.lang.Integer",
+      "description": "Port for Postgres to run on. Default is '5432'."
+    },
+    {
+      "name": "docker.postgres.imageName",
+      "type": "java.lang.String",
+      "description": "Name of the Docker image to use. Default is 'postgres'."
+    },
+    {
+      "name": "docker.postgres.imageVersion",
+      "type": "java.lang.String",
+      "description": "Version of the Docker image to use. Default is 'latest'."
+    },
+    {
+      "name": "docker.postgres.timeout",
+      "type": "java.lang.Integer",
+      "description": "The duration in milliseconds which will be slept (ie, Thread.sleep) before the process is halted. Default is 300000 (ie, 5 minutes)"
+    },
+    {
+      "name": "docker.postgres.containerName",
+      "type": "java.lang.String",
+      "description": "Name for the container to launch under. Default is 'postgression'."
+    },
+    {
+      "name": "docker.postgres.startupVerificationText",
+      "type": "java.lang.String",
+      "description": "Text which will be looked to indicate the Docker container has started successfully. Default is 'PostgreSQL init process complete; ready for start up.'."
+    }
+  ]
+}
