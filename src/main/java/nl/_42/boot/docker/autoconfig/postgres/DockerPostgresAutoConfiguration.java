@@ -1,10 +1,12 @@
 package nl._42.boot.docker.autoconfig.postgres;
 
 import liquibase.integration.spring.SpringLiquibase;
+import nl._42.boot.docker.postgres.DockerPostgresProcessRunner;
 import nl._42.boot.docker.postgres.DockerPostgresProperties;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.AllNestedConditions;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -12,12 +14,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
-@ConditionalOnProperty(prefix = "docker.postgres", name = "enabled", matchIfMissing = false)
+@ConditionalOnProperty(prefix = "docker.postgres", name = "enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnClass(value = DockerPostgresProcessRunner.class)
 @AutoConfigureAfter({LiquibaseAutoConfiguration.class })
 @EnableConfigurationProperties(DockerPostgresProperties.class)
 public class DockerPostgresAutoConfiguration {
 
-    public static final String DEPEND_ON_BEAN = "springScriptHooksBean";
+    public static final String DEPEND_ON_BEAN = "dockerPostgresBean";
 
     @Configuration
     @EnableConfigurationProperties(DockerPostgresProperties.class)
@@ -30,22 +33,22 @@ public class DockerPostgresAutoConfiguration {
         }
 
         @Bean
-        @Conditional(OnSpringScriptHooksCondition.class)
-        public DockerPostgresBean springScriptHooksBean() {
+        @Conditional(OnDockerPostgresCondition.class)
+        public DockerPostgresBean dockerPostgresBean() {
             return new DockerPostgresBean(properties);
         }
 
     }
 
     @Bean
-    @Conditional(OnSpringScriptHooksCondition.class)
+    @Conditional(OnDockerPostgresCondition.class)
     public DockerPostgresDependencyPostProcessor docker42DatabaseBeanLiquibaseDependencyPostProcessor() {
         return new DockerPostgresDependencyPostProcessor(DEPEND_ON_BEAN);
     }
 
-    static class OnSpringScriptHooksCondition extends AllNestedConditions {
+    static class OnDockerPostgresCondition extends AllNestedConditions {
 
-        OnSpringScriptHooksCondition() {
+        OnDockerPostgresCondition() {
             super(ConfigurationPhase.REGISTER_BEAN);
         }
 
