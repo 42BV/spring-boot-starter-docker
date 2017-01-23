@@ -1,6 +1,6 @@
 package nl._42.boot.docker.autoconfig.postgres;
 
-import nl._42.boot.docker.postgres.DockerPostgresProcessRunner;
+import nl._42.boot.docker.postgres.DockerPostgresContainer;
 import nl._42.boot.docker.postgres.DockerPostgresProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,16 +25,17 @@ public class DockerPostgresBean {
         this.properties = properties;
     }
 
-    private DockerPostgresProcessRunner processRunner;
+    private DockerPostgresContainer postgresContainer;
 
     @Autowired
     private AbstractApplicationContext applicationContext;
 
     @PostConstruct
     public void postConstruct() throws IOException {
-        processRunner = new DockerPostgresProcessRunner(properties);
-        processRunner.start();
-        if (processRunner.verify()) {
+        LOGGER.info(">>> Configuring Docker Postgres");
+        postgresContainer = new DockerPostgresContainer(properties);
+        postgresContainer.start();
+        if (postgresContainer.verify()) {
             LOGGER.info("| Postgres container successfully started");
         } else {
             LOGGER.error("| Postgres failed to initialize");
@@ -45,8 +46,8 @@ public class DockerPostgresBean {
 
     @PreDestroy
     public void preDestroy() {
-        LOGGER.info(">>> Tearing down Docker 42");
-        processRunner.interrupt();
+        LOGGER.info(">>> Tearing down Postgres Docker");
+        postgresContainer.interrupt();
     }
 
 }
