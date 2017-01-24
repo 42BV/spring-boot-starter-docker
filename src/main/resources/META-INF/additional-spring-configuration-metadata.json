@@ -49,6 +49,11 @@
       "name": "docker.postgres.startupVerificationText",
       "type": "java.lang.String",
       "description": "Text which will be looked to indicate the Docker container has started successfully. Default is 'PostgreSQL init process complete; ready for start up.'."
+    },
+    {
+      "name": "docker.postgres.forceClean",
+      "type": "java.lang.Boolean",
+      "description": "Will try to forcibly remove the container if it already exists. Default is false."
     }
   ]
 }
