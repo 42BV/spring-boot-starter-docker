@@ -51,6 +51,11 @@
       "description": "Text which will be looked to indicate the Docker container has started successfully. Default is 'PostgreSQL init process complete; ready for start up.'."
     },
     {
+      "name": "docker.postgres.dockerCommand",
+      "type": "java.lang.String",
+      "description": "The command used to start up the Postgres container. Note that string replacement will take place on the ${x} variables}. The variables available are all the properties in DockerPostgresProperties. Default 'docker run --rm -e POSTGRES_PASSWORD=${password} -p 5432:${port} --name ${containerName} ${imageName}:${imageVersion}'."
+    },
+    {
       "name": "docker.postgres.forceClean",
       "type": "java.lang.Boolean",
       "description": "Will try to forcibly remove the container if it already exists. Default is false."
