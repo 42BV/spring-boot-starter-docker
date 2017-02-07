@@ -38,7 +38,12 @@
     {
       "name": "docker.postgres.timeout",
       "type": "java.lang.Integer",
-      "description": "The duration in milliseconds which will be slept (ie, Thread.sleep) before the process is halted. Default is 300000 (ie, 5 minutes)"
+      "description": "The duration in milliseconds which will be slept (ie, Thread.sleep) before the process is halted. Default is 300000 (ie, 5 minutes)."
+    },
+    {
+      "name": "docker.postgres.afterVerificationWait",
+      "type": "java.lang.Integer",
+      "description": "The duration in milliseconds to wait (Thread.sleep) after Docker Postgres has been verified to start. Default is 0."
     },
     {
       "name": "docker.postgres.containerName",

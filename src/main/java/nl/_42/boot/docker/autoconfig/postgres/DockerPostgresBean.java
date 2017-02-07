@@ -32,7 +32,7 @@ public class DockerPostgresBean {
     private AbstractApplicationContext applicationContext;
 
     @PostConstruct
-    public void postConstruct() throws IOException {
+    public void postConstruct() throws Exception {
         LOGGER.info(">>> Configuring Docker Postgres");
         postgresContainer = new DockerPostgresBootSequence(properties).execute();
         applicationContext.registerShutdownHook();
