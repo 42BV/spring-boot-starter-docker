@@ -63,7 +63,7 @@
     {
       "name": "docker.postgres.forceClean",
       "type": "java.lang.Boolean",
-      "description": "Will try to forcibly remove the container if it already exists. Default is false."
+      "description": "Will try to forcibly remove the container if it already exists. Default is true."
     },
     {
       "name": "docker.postgres.customVariables",
