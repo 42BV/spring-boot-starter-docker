@@ -23,7 +23,7 @@
     {
       "name": "docker.postgres.port",
       "type": "java.lang.Integer",
-      "description": "Port for Postgres to run on. Default is '5432'."
+      "description": "Port for Postgres to run on. Default is taken from spring.datasource.url, or 5432 if lacking."
     },
     {
       "name": "docker.postgres.imageName",
@@ -56,9 +56,14 @@
       "description": "Text which will be looked to indicate the Docker container has started successfully. Default is 'PostgreSQL init process complete; ready for start up.'."
     },
     {
+      "name": "docker.postgres.timesExpectedVerificationText",
+      "type": "java.lang.Integer",
+      "description": "The number of times the startup verification text must be found before the database is considered ready. Default is 2 (because of a short shutdown during the setup process)."
+    },
+    {
       "name": "docker.postgres.dockerCommand",
       "type": "java.lang.String",
-      "description": "The command used to start up the Postgres container. Note that string replacement will take place on the ${x} variables}. The variables available are all the properties in DockerPostgresProperties. Default 'docker run --rm -e POSTGRES_PASSWORD=${password} -p 5432:${port} --name ${containerName} ${imageName}:${imageVersion}'."
+      "description": "The command used to start up the Postgres container. Note that string replacement will take place on the ${x} variables}. The variables available are all the properties in DockerPostgresProperties. Default 'docker run --rm --tty -e POSTGRES_PASSWORD=${password} -p ${port}:5432 --name ${containerName} ${imageName}:${imageVersion}'."
     },
     {
       "name": "docker.postgres.forceClean",
