@@ -1,8 +1,8 @@
 package nl._42.boot.docker.autoconfig.postgres;
 
 import nl._42.boot.docker.postgres.DockerPostgresBootSequence;
-import nl._42.boot.docker.postgres.DockerPostgresContainer;
 import nl._42.boot.docker.postgres.DockerPostgresProperties;
+import nl._42.boot.docker.postgres.DockerStartContainerCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class DockerPostgresBean {
     private final DockerPostgresProperties properties;
     private final DataSourceProperties dataSourceProperties;
 
-    private DockerPostgresContainer postgresContainer;
+    private DockerStartContainerCommand postgresContainer;
 
     public DockerPostgresBean(DockerPostgresProperties properties, DataSourceProperties dataSourceProperties) {
         this.properties = properties;
