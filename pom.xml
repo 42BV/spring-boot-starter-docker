@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring-boot-starter-docker</artifactId>
-    <version>0.6.1-SNAPSHOT</version>
+    <version>0.7.0</version>
     <packaging>jar</packaging>
     <groupId>nl.42</groupId>
 
@@ -18,6 +18,7 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>4.12</junit.version>
+        <spring-boot-docker-postgres.version>0.7.0</spring-boot-docker-postgres.version>
     </properties>
 
     <distributionManagement>
@@ -32,13 +33,6 @@
     </distributionManagement>
 
     <dependencies>
-
-        <!-- Required for string substitution -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.5</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -61,8 +55,8 @@
         <dependency>
             <groupId>nl.42</groupId>
             <artifactId>spring-boot-docker-postgres</artifactId>
-            <version>0.6.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <version>${spring-boot-docker-postgres.version}</version>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>
