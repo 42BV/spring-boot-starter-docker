@@ -6,12 +6,12 @@
       "description": "Determines whether the Postgres Docker image is enabled. Default is false."
     },
     {
-      "name": "docker.postgres.stdOutFilename",
+      "name": "docker.postgres.std-out-filename",
       "type": "java.lang.String",
       "description": "The file for the OS process to write its std output to. Default is 'docker-std-out.log'."
     },
     {
-      "name": "docker.postgres.stdErrFilename",
+      "name": "docker.postgres.std-err-filename",
       "type": "java.lang.String",
       "description": "The file for the OS process to write its std output to. Default is 'docker-std-err.log'."
     },
@@ -26,12 +26,12 @@
       "description": "Port for Postgres to run on. Default is taken from spring.datasource.url, or 5432 if lacking."
     },
     {
-      "name": "docker.postgres.imageName",
+      "name": "docker.postgres.image-name",
       "type": "java.lang.String",
       "description": "Name of the Docker image to use. Default is 'postgres'."
     },
     {
-      "name": "docker.postgres.imageVersion",
+      "name": "docker.postgres.image-version",
       "type": "java.lang.String",
       "description": "Version of the Docker image to use. Default is 'latest'."
     },
@@ -41,37 +41,47 @@
       "description": "The duration in milliseconds which will be slept (ie, Thread.sleep) before the process is halted. Default is 300000 (ie, 5 minutes)."
     },
     {
-      "name": "docker.postgres.afterVerificationWait",
+      "name": "docker.postgres.after-verification-wait",
       "type": "java.lang.Integer",
       "description": "The duration in milliseconds to wait (Thread.sleep) after Docker Postgres has been verified to start. Default is 0."
     },
     {
-      "name": "docker.postgres.containerName",
+      "name": "docker.postgres.container-name",
       "type": "java.lang.String",
       "description": "Name for the container to launch under. Default is 'postgression'."
     },
     {
-      "name": "docker.postgres.startupVerificationText",
+      "name": "docker.postgres.startup-verification-text",
       "type": "java.lang.String",
       "description": "Text which will be looked to indicate the Docker container has started successfully. Default is 'PostgreSQL init process complete; ready for start up.'."
     },
     {
-      "name": "docker.postgres.timesExpectedVerificationText",
+      "name": "docker.postgres.times-expected-verification-text",
       "type": "java.lang.Integer",
       "description": "The number of times the startup verification text must be found before the database is considered ready. Default is 2 (because of a short shutdown during the setup process)."
     },
     {
-      "name": "docker.postgres.dockerCommand",
+      "name": "docker.postgres.docker-command",
       "type": "java.lang.String",
       "description": "The command used to start up the Postgres container. Note that string replacement will take place on the ${x} variables}. The variables available are all the properties in DockerPostgresProperties. Default 'docker run --rm --tty -e POSTGRES_PASSWORD=${password} -p ${port}:5432 --name ${containerName} ${imageName}:${imageVersion}'."
     },
     {
-      "name": "docker.postgres.forceClean",
+      "name": "docker.postgres.force-clean",
       "type": "java.lang.Boolean",
       "description": "Will try to forcibly remove the container if it already exists. Default is true."
     },
     {
-      "name": "docker.postgres.customVariables",
+      "name": "docker.postgres.force-clean-afterwards",
+      "type": "java.lang.Boolean",
+      "description": "Will try to forcibly remove the container after the @PreDestroy hook has been called. Default is true."
+    },
+    {
+      "name": "docker.postgres.stop-port-occupying-container",
+      "type": "java.lang.Boolean",
+      "description": "Stops a container that occupies the same port as the one the docker container must be started on. Default is true."
+    },
+    {
+      "name": "docker.postgres.custom-variables",
       "type": "java.util.Map",
       "description": "Contains all the custom variables to be used for the Docker command."
     },
