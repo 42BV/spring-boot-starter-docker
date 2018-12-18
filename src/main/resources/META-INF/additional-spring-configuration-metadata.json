@@ -82,8 +82,8 @@
     },
     {
       "name": "docker.postgres.custom-variables",
-      "type": "java.util.Map",
+      "type": "java.util.Map<String, String>",
       "description": "Contains all the custom variables to be used for the Docker command."
-    },
+    }
   ]
 }
