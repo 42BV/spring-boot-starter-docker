@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
+@Configuration
 @ConditionalOnProperty(prefix = "docker.postgres", name = "enabled", havingValue = "true", matchIfMissing = true)
 @ConditionalOnClass(value = DockerPostgresBootSequence.class)
 @AutoConfigureAfter({LiquibaseAutoConfiguration.class })
