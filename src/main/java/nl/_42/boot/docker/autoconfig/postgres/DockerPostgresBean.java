@@ -11,6 +11,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Responsible for the actual setting up and tearing down of the container. The setting up
@@ -33,10 +35,14 @@ public class DockerPostgresBean {
     @Autowired
     private AbstractApplicationContext applicationContext;
 
+    @Autowired(required = false)
+    private List<DockerPostgresListener> postgresListeners = new ArrayList<>();
+
     @PostConstruct
     public void postConstruct() throws Exception {
         LOGGER.info(">>> Configuring Docker Postgres");
         postgresContainer = new DockerPostgresBootSequence(properties, dataSourceProperties).execute();
+        postgresListeners.forEach(postgresListener -> postgresListener.onSuccess());
         applicationContext.registerShutdownHook();
     }
 
