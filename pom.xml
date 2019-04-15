@@ -32,6 +32,13 @@
         </repository>
     </distributionManagement>
 
+    <scm>
+        <connection>scm:git:https://github.com/42BV/spring-boot-starter-docker.git</connection>
+        <developerConnection>scm:git:https://github.com/42BV/spring-boot-starter-docker.git</developerConnection>
+        <url>https://github.com/42BV/spring-boot-starter-docker</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <dependencies>
 
         <dependency>
